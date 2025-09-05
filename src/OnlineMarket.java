@@ -2,7 +2,6 @@ import model.*;
 
 /**
  * Main hierarchy class representing the online market system
- * Contains all market data (users, products, orders, etc.)
  */
 public class OnlineMarket {
 
