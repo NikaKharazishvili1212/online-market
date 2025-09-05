@@ -8,13 +8,11 @@ public class OnlineMarket {
 
     private Admin[] admins;
     private Customer[] customers;
-    private Product[] products;
     private Category[] categories;
 
     public OnlineMarket() {
         this.admins = new Admin[0];
         this.customers = new Customer[0];
-        this.products = new Product[0];
         this.categories = new Category[0];
     }
 
@@ -33,14 +31,6 @@ public class OnlineMarket {
 
     public void setCustomers(Customer[] customers) {
         this.customers = customers;
-    }
-
-    public Product[] getProducts() {
-        return products;
-    }
-
-    public void setProducts(Product[] products) {
-        this.products = products;
     }
 
     public Category[] getCategories() {

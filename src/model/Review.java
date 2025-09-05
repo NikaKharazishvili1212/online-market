@@ -6,17 +6,15 @@ package model;
 public class Review {
 
     private String id;
-    private int rating;
+    private Integer rating;
     private String comment;
     private Customer customer;
-    private Product product;
 
-    public Review(String id, int rating, String comment, Customer customer, Product product) {
+    public Review(String id, Integer rating, String comment, Customer customer) {
         this.id = id;
         this.rating = rating;
         this.comment = comment;
         this.customer = customer;
-        this.product = product;
     }
 
     // Getters and setters
@@ -28,11 +26,11 @@ public class Review {
         this.id = id;
     }
 
-    public int getRating() {
+    public Integer getRating() {
         return rating;
     }
 
-    public void setRating(int rating) {
+    public void setRating(Integer rating) {
         this.rating = rating;
     }
 
@@ -50,13 +48,5 @@ public class Review {
 
     public void setCustomer(Customer customer) {
         this.customer = customer;
-    }
-
-    public Product getProduct() {
-        return product;
-    }
-
-    public void setProduct(Product product) {
-        this.product = product;
     }
 }

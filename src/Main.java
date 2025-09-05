@@ -14,8 +14,8 @@ public class Main {
         Product javaBook = new Product("P101", "Java Book", new BigDecimal("29.99"), 10);
         programmingCategory.setProducts(new Product[] { javaBook });
 
-        // Create review and link to product and customer
-        Review javaBookReview = new Review("R001", 5, "Great book on Java!", alice, javaBook);
+        // Create review and add to product
+        Review javaBookReview = new Review("R001", 5, "Great book on Java!", alice);
         javaBook.setReviews(new Review[] { javaBookReview });
 
         // Create payment and order and link to customer
@@ -23,14 +23,13 @@ public class Main {
         Order order = new Order("ORD001", "Processing", new Product[] { javaBook }, samplePayment);
         alice.setOrders(new Order[] { order });
 
-        // Create OnlineMarket and populate
+        // Create OnlineMarket and populate it with data
         OnlineMarket onlineMarket = new OnlineMarket();
-        onlineMarket.setProducts(new Product[] { javaBook });
         onlineMarket.setCustomers(new Customer[] { alice });
         onlineMarket.setAdmins(new Admin[] { admin });
         onlineMarket.setCategories(new Category[] { programmingCategory });
 
-        // Demo ordering process. Attempt order with insufficient balance first then add funds and retry
+        // Demo ordering process: attempt order with insufficient funds, add funds, then order again
         OrderService orderService = new OrderService();
         orderService.placeOrder(alice, javaBook);
         alice.addBalanceWithMessage(new BigDecimal("50.0"));
