@@ -10,6 +10,7 @@ public class Customer extends User {
 
     private Product[] shoppingCart;
     private Product[] wishlist;
+    private Order[] orders;
     private BigDecimal balance;
 
     public Customer(String id, String name, String email, BigDecimal balance) {
@@ -17,15 +18,39 @@ public class Customer extends User {
         this.shoppingCart = new Product[0];
         this.wishlist = new Product[0];
         this.balance = balance;
+        this.orders = new Order[0];
     }
 
     // Getters and setters
-    public BigDecimal getBalance() { return balance; }
-    public void addBalance(BigDecimal amount) { this.balance = this.balance.add(amount); }
+    public BigDecimal getBalance() {
+        return balance;
+    }
 
-    public Product[] getShoppingCart() { return shoppingCart; }
-    public void setShoppingCart(Product[] shoppingCart) { this.shoppingCart = shoppingCart; }
+    public void addBalance(BigDecimal amount) {
+        this.balance = this.balance.add(amount);
+    }
 
-    public Product[] getWishlist() { return wishlist; }
-    public void setWishlist(Product[] wishlist) { this.wishlist = wishlist; }
+    public Product[] getShoppingCart() {
+        return shoppingCart;
+    }
+
+    public void setShoppingCart(Product[] shoppingCart) {
+        this.shoppingCart = shoppingCart;
+    }
+
+    public Product[] getWishlist() {
+        return wishlist;
+    }
+
+    public void setWishlist(Product[] wishlist) {
+        this.wishlist = wishlist;
+    }
+
+    public Order[] getOrders() {
+        return orders;
+    }
+
+    public void setOrders(Order[] orders) {
+        this.orders = orders;
+    }
 }

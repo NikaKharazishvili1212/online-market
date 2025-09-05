@@ -5,7 +5,7 @@ package model;
  * Extends User class
  */
 public class Admin extends User {
-    
+
     private int adminLevel;
 
     public Admin(String id, String name, String email, int adminLevel) {
@@ -14,6 +14,11 @@ public class Admin extends User {
     }
 
     // Getters and setters
-    public int getAdminLevel() { return adminLevel; }
-    public void setAdminLevel(int adminLevel) { this.adminLevel = adminLevel; }
+    public int getAdminLevel() {
+        return adminLevel;
+    }
+
+    public void setAdminLevel(int adminLevel) {
+        this.adminLevel = adminLevel;
+    }
 }
