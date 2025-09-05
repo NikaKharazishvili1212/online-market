@@ -21,6 +21,11 @@ public class Customer extends User {
         this.orders = new Order[0];
     }
 
+    public void addBalanceWithMessage(BigDecimal amount) {
+        System.out.println("Adding funds to " + getName() + "'s account ($" + balance + " + $" + amount + " = " + "$" + (balance.add(amount)) + ")");
+        this.balance = this.balance.add(amount);
+    }
+
     // Getters and setters
     public BigDecimal getBalance() {
         return balance;

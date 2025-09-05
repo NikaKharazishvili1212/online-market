@@ -8,11 +8,13 @@ public class Category {
     private String id;
     private String name;
     private String description;
+    private Product[] products;
 
     public Category(String id, String name, String description) {
         this.id = id;
         this.name = name;
         this.description = description;
+        this.products = new Product[0];
     }
 
     // Getters and setters
@@ -38,5 +40,13 @@ public class Category {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Product[] getProducts() {
+        return products;
+    }
+
+    public void setProducts(Product[] products) {
+        this.products = products;
     }
 }

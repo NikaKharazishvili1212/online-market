@@ -10,18 +10,12 @@ public class OnlineMarket {
     private Customer[] customers;
     private Product[] products;
     private Category[] categories;
-    private Order[] orders;
-    private Payment[] payments;
-    private Review[] reviews;
 
     public OnlineMarket() {
         this.admins = new Admin[0];
         this.customers = new Customer[0];
         this.products = new Product[0];
         this.categories = new Category[0];
-        this.orders = new Order[0];
-        this.payments = new Payment[0];
-        this.reviews = new Review[0];
     }
 
     // Getters and setters
@@ -55,29 +49,5 @@ public class OnlineMarket {
 
     public void setCategories(Category[] categories) {
         this.categories = categories;
-    }
-
-    public Order[] getOrders() {
-        return orders;
-    }
-
-    public void setOrders(Order[] orders) {
-        this.orders = orders;
-    }
-
-    public Payment[] getPayments() {
-        return payments;
-    }
-
-    public void setPayments(Payment[] payments) {
-        this.payments = payments;
-    }
-
-    public Review[] getReviews() {
-        return reviews;
-    }
-
-    public void setReviews(Review[] reviews) {
-        this.reviews = reviews;
     }
 }

@@ -14,18 +14,18 @@ public class Product {
     private String name;
     private BigDecimal price;
     private int stock;
-    private Category category;
+    private Review[] reviews;
 
     static {
-        taxRate = new BigDecimal("0.1");  // 10% tax added to product prices
+        taxRate = new BigDecimal("0.1"); // 10% tax added to product prices
     }
 
-    public Product(String id, String name, BigDecimal price, int stock, Category category) {
+    public Product(String id, String name, BigDecimal price, int stock) {
         this.id = id;
         this.name = name;
         this.price = price;
         this.stock = stock;
-        this.category = category;
+        this.reviews = new Review[0];
     }
 
     // Getters and setters
@@ -65,11 +65,11 @@ public class Product {
         this.stock = stock;
     }
 
-    public Category getCategory() {
-        return category;
+    public Review[] getReviews() {
+        return reviews;
     }
 
-    public void setCategory(Category category) {
-        this.category = category;
+    public void setReviews(Review[] reviews) {
+        this.reviews = reviews;
     }
 }
