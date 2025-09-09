@@ -13,7 +13,6 @@ A Java class hierarchy implementation for an online marketplace demonstrating OO
 
 ## Requirements Checklist for Homework 2 (extended)
 - ✅ Added at least 3 superclasses in the hierarchy (including 1 abstract class)
-- ✅ Used polymorphism with an abstract class
-- ✅ Created and overrode at least one abstract method
+- ✅ Used polymorphism with abstract class (created/overrode abstract methods)
 - ✅ Used protected modifier at least 5 times
 - ✅ Overrode Object methods (toString(), hashCode(), equals()) for at least 3 classes
