@@ -1,31 +1,23 @@
-package model;
+package model.market;
 
 import java.math.BigDecimal;
 
 /**
- * Represents a payment transaction for an order
+ * Represents a payment transaction for an order.
+ * Extends Entity class.
  */
-public class Payment {
+public class Payment extends Entity {
 
-    private String id;
     private BigDecimal amount;
     private String method;
 
     public Payment(String id, BigDecimal amount, String method) {
-        this.id = id;
+        super(id);
         this.amount = amount;
         this.method = method;
     }
 
     // Getters and setters
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
     public BigDecimal getAmount() {
         return amount;
     }

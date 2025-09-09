@@ -1,10 +1,12 @@
-package model;
+package model.user;
 
+import model.market.*;
 import java.math.BigDecimal;
+import java.util.Date;
 
 /**
- * Represents a customer user who can make purchases
- * Extends User class
+ * Represents a customer user who can make purchases.
+ * Extends User class.
  */
 public class Customer extends User {
 
@@ -13,16 +15,22 @@ public class Customer extends User {
     private Order[] orders;
     private BigDecimal balance;
 
-    public Customer(String id, String name, String email, BigDecimal balance) {
-        super(id, name, email);
+    public Customer(String id, String name, String email, String phone, Date registrationDate, BigDecimal balance) {
+        super(id, name, email, phone, registrationDate);
         this.shoppingCart = new Product[0];
         this.wishlist = new Product[0];
-        this.balance = balance;
         this.orders = new Order[0];
+        this.balance = balance;
+    }
+
+    @Override
+    public boolean validateUser() {
+        return getEmail().contains("@");
     }
 
     public void addBalanceWithMessage(BigDecimal amount) {
-        System.out.println("Adding funds to " + getName() + "'s account ($" + balance + " + $" + amount + " = " + "$" + (balance.add(amount)) + ")");
+        System.out.println("Adding funds to " + getName() + "'s account ($" + balance + " + $" + amount + " = " + "$"
+                + (balance.add(amount)) + ")");
         this.balance = this.balance.add(amount);
     }
 

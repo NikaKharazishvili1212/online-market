@@ -1,8 +1,9 @@
-import model.*;
+import model.user.*;
+import model.market.*;
 
 /**
- * Main hierarchy class representing the online market system
- * Contains all market data (users, products, orders, etc.)
+ * Main hierarchy class representing the online market system.
+ * Contains all market data (users, products, orders, etc.).
  */
 public class OnlineMarket {
 
