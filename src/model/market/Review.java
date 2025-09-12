@@ -4,16 +4,16 @@ import model.user.Customer;
 
 /**
  * Represents a customer review/rating for a product.
- * Extends Entity class.
  */
-public class Review extends Identifier {
+public class Review {
 
+    private String id;
     private Integer rating;
     private String comment;
     private Customer customer;
 
     public Review(String id, Integer rating, String comment, Customer customer) {
-        super(id);
+        this.id = id;
         this.rating = rating;
         this.comment = comment;
         this.customer = customer;
@@ -25,6 +25,11 @@ public class Review extends Identifier {
     }
 
     @Override
+    public int hashCode() {
+        return id.hashCode();
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o)
             return true;
@@ -33,12 +38,15 @@ public class Review extends Identifier {
         return id.equals(((Review) o).id);
     }
 
-    @Override
-    public int hashCode() {
-        return id.hashCode();
+    // Getters and setters
+    public String getId() {
+        return id;
     }
 
-    // Getters and setters
+    public void setId(String id) {
+        this.id = id;
+    }
+
     public Integer getRating() {
         return rating;
     }

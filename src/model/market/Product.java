@@ -5,15 +5,12 @@ import java.math.BigDecimal;
 /**
  * Represents a product available for purchase in the market.
  * Contains pricing and stock information.
- * Extends Entity class and implements Pricable, Stockable, and Reviewable interfaces.
+ * Extends MarketItem class and implements Pricable, Stockable, and Reviewable interfaces.
  */
-public class Product extends Identifier implements Pricable, Stockable, Reviewable {
+public class Product extends MarketItem implements Pricable, Stockable, Reviewable {
 
     public static BigDecimal taxRate;
     private final String productCode;
-
-    private String name;
-    private BigDecimal price;
     private int stock;
     private Review[] reviews;
 
@@ -22,17 +19,20 @@ public class Product extends Identifier implements Pricable, Stockable, Reviewab
     }
 
     public Product(String id, String name, BigDecimal price, int stock, String productCode) {
-        super(id);
-        this.name = name;
-        this.price = price;
+        super(id, name, price);
         this.stock = stock;
-        this.reviews = new Review[0];
         this.productCode = productCode;
+        this.reviews = new Review[0];
     }
 
     @Override
     public String toString() {
         return "Product: " + name;
+    }
+
+    @Override
+    public int hashCode() {
+        return id.hashCode();
     }
 
     @Override
@@ -45,8 +45,29 @@ public class Product extends Identifier implements Pricable, Stockable, Reviewab
     }
 
     @Override
-    public int hashCode() {
-        return id.hashCode();
+    public String getItemDescription() {
+        return "Product: " + name + " (SKU: " + productCode + ") - $" + price + " - Stock: " + stock;
+    }
+
+    public static BigDecimal getPriceWithTax(BigDecimal price) {
+        return price.multiply(BigDecimal.ONE.add(taxRate));
+    }
+
+    public String getProductCode() {
+        return productCode;
+    }
+
+    public Review[] getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(Review[] reviews) {
+        this.reviews = reviews;
+    }
+
+    @Override
+    public void restock(int quantity) {
+        this.stock += quantity;
     }
 
     @Override
@@ -67,50 +88,25 @@ public class Product extends Identifier implements Pricable, Stockable, Reviewab
         return sum / reviews.length;
     }
 
+    // Pricable interface implementation
     @Override
-    public void restock(int quantity) {
-        this.stock += quantity;
-    }
-
-    // Getters and setters
-    
-    public static BigDecimal getPriceWithTax(BigDecimal price) {
-        return price.multiply(BigDecimal.ONE.add(taxRate));
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public BigDecimal getPrice() {
         return price;
     }
 
+    @Override
     public void setPrice(BigDecimal price) {
         this.price = price;
     }
 
+    // Stockable interface implementation
+    @Override
     public int getStock() {
         return stock;
     }
 
+    @Override
     public void setStock(int stock) {
         this.stock = stock;
-    }
-
-    public Review[] getReviews() {
-        return reviews;
-    }
-
-    public void setReviews(Review[] reviews) {
-        this.reviews = reviews;
-    }
-
-    public String getProductCode() {
-        return productCode;
     }
 }

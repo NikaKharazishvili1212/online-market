@@ -7,13 +7,9 @@ import java.math.BigDecimal;
 
 /**
  * Service class handling order placement business logic.
- * Implements ReportGenerator interface.
+ * Implements IReportGenerator interface.
  */
 public class OrderService implements IReportGenerator {
-
-    public void processEntity(Identifier identifier) {
-        System.out.println("Processing: " + identifier.getId());
-    }
 
     @Override
     public void generateReport(Report report) {
@@ -35,6 +31,34 @@ public class OrderService implements IReportGenerator {
         } else {
             System.out.println("Order failed for " + customer.getName() + ". Insufficient funds (Current balance: $"
                     + customer.getBalance() + ")");
+        }
+    }
+
+    // POLYMORPHIC METHOD: Accepts any Pricable interface type
+    public void applyDiscount(Pricable item, double discountPercentage) {
+        BigDecimal originalPrice = item.getPrice();
+        BigDecimal discount = originalPrice.multiply(BigDecimal.valueOf(discountPercentage / 100));
+        BigDecimal newPrice = originalPrice.subtract(discount);
+        item.setPrice(newPrice);
+        
+        System.out.println("Applied " + discountPercentage + "% discount: $" + 
+                          originalPrice + " → $" + newPrice);
+    }
+    
+    // POLYMORPHIC METHOD: Accepts any Validatable interface type
+    public void validateAndPrintStatus(Validatable validatable) {
+        boolean isValid = validatable.validateUser();
+        System.out.println("Validation status: " + (isValid ? "VALID" : "INVALID"));
+    }
+    
+    // POLYMORPHIC METHOD: Accepts any Stockable interface type
+    public void checkAndRestock(Stockable item, int minimumStock) {
+        if (item.getStock() < minimumStock) {
+            int restockAmount = minimumStock - item.getStock();
+            item.restock(restockAmount);
+            System.out.println("Restocked " + restockAmount + " items. New stock: " + item.getStock());
+        } else {
+            System.out.println("Stock sufficient: " + item.getStock() + " items available");
         }
     }
 }

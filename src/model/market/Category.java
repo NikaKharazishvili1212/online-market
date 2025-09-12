@@ -1,18 +1,18 @@
 package model.market;
 
+import java.math.BigDecimal;
+
 /**
  * Represents a product category for organizing products.
- * Extends Entity class.
+ * Extends MarketItem class.
  */
-public class Category extends Identifier {
+public class Category extends MarketItem {
 
-    private String name;
     private String description;
     private Product[] products;
 
     public Category(String id, String name, String description) {
-        super(id);
-        this.name = name;
+        super(id, name, BigDecimal.ZERO);
         this.description = description;
         this.products = new Product[0];
     }
@@ -20,6 +20,11 @@ public class Category extends Identifier {
     @Override
     public String toString() {
         return "Category: " + name;
+    }
+
+    @Override
+    public int hashCode() {
+        return id.hashCode();
     }
 
     @Override
@@ -32,19 +37,11 @@ public class Category extends Identifier {
     }
 
     @Override
-    public int hashCode() {
-        return id.hashCode();
+    public String getItemDescription() {
+        return "Category: " + name + " - " + description + " (" + products.length + " products)";
     }
 
     // Getters and setters
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getDescription() {
         return description;
     }
