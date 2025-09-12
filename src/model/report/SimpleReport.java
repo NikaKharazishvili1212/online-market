@@ -5,6 +5,7 @@ package model.report;
  * Extends Report class.
  */
 public class SimpleReport extends Report {
+    
     private String reportData;
 
     public SimpleReport(String reportType, String reportData) {

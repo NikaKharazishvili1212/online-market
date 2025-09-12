@@ -16,3 +16,9 @@ A Java class hierarchy implementation for an online marketplace demonstrating OO
 - ✅ Used polymorphism with abstract class (created/overrode abstract methods)
 - ✅ Used protected modifier at least 5 times
 - ✅ Overrode Object methods (toString(), hashCode(), equals()) for at least 3 classes
+
+## Requirements Checklist for Homework 3 (extended)
+- ✅ Added 5 interfaces to the existing hierarchy
+- ✅ Used polymorphism with interfaces (via method parameters and fields)
+- ✅ Created final class, method, and variable
+- ✅ Created static block, method, and variable

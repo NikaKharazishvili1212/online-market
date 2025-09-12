@@ -6,7 +6,7 @@ import java.math.BigDecimal;
  * Represents a payment transaction for an order.
  * Extends Entity class.
  */
-public class Payment extends Entity {
+public class Payment extends Identifier {
 
     private BigDecimal amount;
     private String method;

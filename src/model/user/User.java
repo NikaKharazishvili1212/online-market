@@ -4,14 +4,15 @@ import java.util.Date;
 
 /**
  * Base class for all users (Admin, Customer) in the online market system.
+ * Implements Validatable interface.
  */
-public abstract class User {
+public abstract class User implements Validatable {
 
-    protected String id;
-    protected String name;
-    protected String email;
-    protected String phone;
-    protected Date registrationDate;
+    private String id;
+    private String name;
+    private String email;
+    private String phone;
+    private Date registrationDate;
 
     public User(String id, String name, String email, String phone, Date registrationDate) {
         this.id = id;
@@ -21,14 +22,12 @@ public abstract class User {
         this.registrationDate = registrationDate;
     }
 
-    public abstract boolean validateUser();
-
     // Getters and setters
     public String getId() {
         return id;
     }
 
-    public void setId(String id) {
+    protected void setId(String id) {
         this.id = id;
     }
 
@@ -36,7 +35,7 @@ public abstract class User {
         return name;
     }
 
-    public void setName(String name) {
+    protected void setName(String name) {
         this.name = name;
     }
 
@@ -44,7 +43,7 @@ public abstract class User {
         return email;
     }
 
-    public void setEmail(String email) {
+    protected void setEmail(String email) {
         this.email = email;
     }
 
@@ -52,7 +51,7 @@ public abstract class User {
         return phone;
     }
 
-    public void setPhone(String phone) {
+    protected void setPhone(String phone) {
         this.phone = phone;
     }
 
@@ -60,7 +59,7 @@ public abstract class User {
         return registrationDate;
     }
 
-    public void setRegistrationDate(Date registrationDate) {
+    protected void setRegistrationDate(Date registrationDate) {
         this.registrationDate = registrationDate;
     }
 }

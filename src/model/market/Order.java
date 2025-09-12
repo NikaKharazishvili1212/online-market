@@ -4,7 +4,7 @@ package model.market;
  * Represents a customer order with products and status.
  * Extends Entity class.
  */
-public class Order extends Entity {
+public class Order extends Identifier {
 
     private String status;
     private Product[] products;

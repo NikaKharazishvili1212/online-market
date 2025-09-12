@@ -1,14 +1,14 @@
 package model.market;
 
 /**
- * Abstract base class for all market entities with unique identifiers.
- * Provides common id field and access methods for all market objects.
+ * Abstract base class providing unique identifier functionality.
+ * Serves as the root of the entity hierarchy with common id management.
  */
-public abstract class Entity {
+public abstract class Identifier {
 
     protected String id;
 
-    public Entity(String id) {
+    public Identifier(String id) {
         this.id = id;
     }
 

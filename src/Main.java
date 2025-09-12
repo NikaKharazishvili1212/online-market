@@ -8,6 +8,7 @@ import java.util.Date;
 public class Main {
 
     public static void main(String[] args) {
+        
         // Create basic objects first with new constructor parameters
         Customer alice = new Customer("C202", "Alice", "alice@email.com", "555-1234", new Date(),
                 new BigDecimal("0.0"));
@@ -15,7 +16,7 @@ public class Main {
 
         // Create category and product and link product to category
         Category programmingCategory = new Category("CAT001", "Programming", "Programming books and resources");
-        Product javaBook = new Product("P101", "Java Book", new BigDecimal("29.99"), 10);
+        Product javaBook = new Product("P101", "Java Book", new BigDecimal("29.99"), 10, "JAVA001");
         programmingCategory.setProducts(new Product[] { javaBook });
 
         // Create reports
@@ -45,6 +46,19 @@ public class Main {
         orderService.processEntity(programmingCategory);
         orderService.generateReport(salesReport);
         orderService.generateReport(inventoryReport);
+
+        // Interface polymorphism demo
+        Pricable pricableItem = javaBook;
+        Stockable stockableItem = javaBook;
+        Validatable validatableUser = alice;
+        
+        System.out.println("Price: " + pricableItem.getPrice());
+        System.out.println("Stock: " + stockableItem.getStock());
+        System.out.println("User valid: " + validatableUser.validateUser());
+
+        // Final class usage demo
+        double discount = DiscountCalculator.calculateDiscount(javaBook.getPrice().doubleValue());
+        System.out.println("Discount: $" + discount);
 
         // Order process demo
         orderService.placeOrder(alice, javaBook);

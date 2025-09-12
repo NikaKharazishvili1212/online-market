@@ -4,7 +4,7 @@ package model.market;
  * Represents a product category for organizing products.
  * Extends Entity class.
  */
-public class Category extends Entity {
+public class Category extends Identifier {
 
     private String name;
     private String description;
@@ -17,7 +17,6 @@ public class Category extends Entity {
         this.products = new Product[0];
     }
 
-    // Overrides
     @Override
     public String toString() {
         return "Category: " + name;

@@ -6,7 +6,7 @@ import model.user.Customer;
  * Represents a customer review/rating for a product.
  * Extends Entity class.
  */
-public class Review extends Entity {
+public class Review extends Identifier {
 
     private Integer rating;
     private String comment;
@@ -19,7 +19,6 @@ public class Review extends Entity {
         this.customer = customer;
     }
 
-    // Overrides
     @Override
     public String toString() {
         return "Comment: " + comment;

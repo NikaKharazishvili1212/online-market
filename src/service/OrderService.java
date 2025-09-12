@@ -7,13 +7,15 @@ import java.math.BigDecimal;
 
 /**
  * Service class handling order placement business logic.
+ * Implements ReportGenerator interface.
  */
-public class OrderService {
+public class OrderService implements IReportGenerator {
 
-    public void processEntity(Entity entity) {
-        System.out.println("Processing: " + entity.getId());
+    public void processEntity(Identifier identifier) {
+        System.out.println("Processing: " + identifier.getId());
     }
 
+    @Override
     public void generateReport(Report report) {
         System.out.println("Generating report: " + report.generateReport());
     }
