@@ -5,11 +5,7 @@ package model.market;
  */
 public final class DiscountCalculator {
     
-    public static final double MAX_DISCOUNT = 0.5;
-    
-    public static double calculateDiscount(double price) {
-        return price * 0.1;
-    }
+    public final double MAX_DISCOUNT = 0.5;
     
     public final double calculateFinalDiscount(double price) {
         return price * MAX_DISCOUNT;
