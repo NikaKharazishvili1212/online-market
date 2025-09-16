@@ -45,7 +45,7 @@ public class Main {
         SimpleReport inventoryReport = new SimpleReport("Stock Report", "150 items");
         orderService.generateReport(salesReport);
         orderService.generateReport(inventoryReport);
-        
+
         // Try-with-resources for AutoCloseable
         try (MarketResource resource = new MarketResource("DatabaseConnection")) {
             resource.useResource();
@@ -55,11 +55,13 @@ public class Main {
             System.out.println("Market exception caught: " + e.getMessage());
         } catch (Exception e) {
             System.out.println("General exception: " + e.getMessage());
+        } finally {
+            System.out.println("Market validation process completed");
         }
 
         // POLYMORPHISM DEMO with exception handling
         System.out.println("Before discount - Java Book price: $" + javaBook.getPrice());
-        
+
         try {
             orderService.applyDiscount(javaBook, 15.0);
             orderService.validateAndPrintStatus(alice);
@@ -77,7 +79,7 @@ public class Main {
         }
 
         alice.addBalanceWithMessage(new BigDecimal("50.0"));
-        
+
         try {
             orderService.placeOrder(alice, javaBook);
         } catch (InsufficientBalanceException | OutOfStockException e) {

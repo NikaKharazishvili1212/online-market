@@ -7,7 +7,7 @@ public final class DiscountCalculator {
     
     public final double MAX_DISCOUNT = 0.5;
     
-    public final double calculateFinalDiscount(double price) {
+    public double calculateFinalDiscount(double price) {
         return price * MAX_DISCOUNT;
     }
     
