@@ -22,3 +22,8 @@ A Java class hierarchy implementation for an online marketplace demonstrating OO
 - ✅ Used polymorphism with interfaces (via method parameters and fields)
 - ✅ Created final class, method, and variable
 - ✅ Created static block, method, and variable
+
+## Requirements Checklist for Homework 4 (extended)
+- ✅ Created 5 custom exceptions (1 checked and 4 unchecked)
+- ✅ Handled checked exception
+- ✅ Created one AutoCloseable class `MarketResource` and used try-catch with resources

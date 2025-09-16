@@ -2,6 +2,10 @@ import model.user.*;
 import model.market.*;
 import model.report.*;
 import service.OrderService;
+import service.MarketResource;
+import model.exceptions.MarketException;
+import model.exceptions.InsufficientBalanceException;
+import model.exceptions.OutOfStockException;
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -42,16 +46,42 @@ public class Main {
         orderService.generateReport(salesReport);
         orderService.generateReport(inventoryReport);
         
-        // POLYMORPHISM DEMO: These methods ACCEPT interface types and DO something with them. Same method, different types
-        System.out.println("Before discount - Java Book price: $" + javaBook.getPrice());
-        orderService.applyDiscount(javaBook, 15.0);  // Applies discount to Product (Pricable interface)
-        orderService.validateAndPrintStatus(alice);  // Validates Customer (Validatable interface)
-        orderService.validateAndPrintStatus(admin);  // Validates Admin (Validatable interface)
-        orderService.checkAndRestock(javaBook, 8);  // Checks and restocks Product (Stockable interface)
+        // Try-with-resources for AutoCloseable
+        try (MarketResource resource = new MarketResource("DatabaseConnection")) {
+            resource.useResource();
+            orderService.validateMarket(); // Checked exception
+            System.out.println("Market validation passed");
+        } catch (MarketException e) {
+            System.out.println("Market exception caught: " + e.getMessage());
+        } catch (Exception e) {
+            System.out.println("General exception: " + e.getMessage());
+        }
 
-        // Order process: successful and failed scenarios
-        orderService.placeOrder(alice, javaBook);
+        // POLYMORPHISM DEMO with exception handling
+        System.out.println("Before discount - Java Book price: $" + javaBook.getPrice());
+        
+        try {
+            orderService.applyDiscount(javaBook, 15.0);
+            orderService.validateAndPrintStatus(alice);
+            orderService.validateAndPrintStatus(admin);
+            orderService.checkAndRestock(javaBook, 8);
+        } catch (Exception e) {
+            System.out.println("Operation failed: " + e.getMessage());
+        }
+
+        // Order process with exception handling
+        try {
+            orderService.placeOrder(alice, javaBook);
+        } catch (InsufficientBalanceException | OutOfStockException e) {
+            System.out.println("Order failed: " + e.getMessage());
+        }
+
         alice.addBalanceWithMessage(new BigDecimal("50.0"));
-        orderService.placeOrder(alice, javaBook);
+        
+        try {
+            orderService.placeOrder(alice, javaBook);
+        } catch (InsufficientBalanceException | OutOfStockException e) {
+            System.out.println("Order failed: " + e.getMessage());
+        }
     }
 }

@@ -1,5 +1,6 @@
 package service;
 
+import model.exceptions.*;
 import model.market.*;
 import model.user.*;
 import model.report.Report;
@@ -16,11 +17,31 @@ public class OrderService implements IReportGenerator {
         System.out.println("Generating report: " + report.generateReport());
     }
 
+    // Handle checked exception
+    public void validateMarket() throws MarketException {
+        if (System.currentTimeMillis() % 2 == 0) {
+            throw new MarketException("Market validation failed: System maintenance");
+        }
+    }
+
     public void placeOrder(Customer customer, Product product) {
         BigDecimal totalCost = Product.getPriceWithTax(product.getPrice());
 
         System.out.println(customer.getName() + " is attempting to order " + product.getName()
                 + " (Total cost with tax: $" + totalCost + ")");
+
+        // Use unchecked exceptions
+        if (customer.getBalance().compareTo(totalCost) < 0) {
+            throw new InsufficientBalanceException(
+                "Customer " + customer.getName() + " has insufficient balance for order"
+            );
+        }
+        
+        if (product.getStock() <= 0) {
+            throw new OutOfStockException(
+                "Product " + product.getName() + " is out of stock"
+            );
+        }
 
         if (customer.getBalance().compareTo(totalCost) >= 0) {
             customer.addBalance(totalCost.negate());
@@ -36,6 +57,12 @@ public class OrderService implements IReportGenerator {
 
     // POLYMORPHIC METHOD: Accepts any Pricable interface type
     public void applyDiscount(Pricable item, double discountPercentage) {
+        if (discountPercentage > 50) {
+            throw new DiscountExceededException(
+                "Discount " + discountPercentage + "% exceeds maximum allowed 50%"
+            );
+        }
+        
         BigDecimal originalPrice = item.getPrice();
         BigDecimal discount = originalPrice.multiply(BigDecimal.valueOf(discountPercentage / 100));
         BigDecimal newPrice = originalPrice.subtract(discount);
@@ -47,8 +74,10 @@ public class OrderService implements IReportGenerator {
     
     // POLYMORPHIC METHOD: Accepts any Validatable interface type
     public void validateAndPrintStatus(Validatable validatable) {
-        boolean isValid = validatable.validateUser();
-        System.out.println("Validation status: " + (isValid ? "VALID" : "INVALID"));
+        if (!validatable.validateUser()) {
+            throw new InvalidUserException("User validation failed for: " + validatable.toString());
+        }
+        System.out.println("Validation status: VALID");
     }
     
     // POLYMORPHIC METHOD: Accepts any Stockable interface type

@@ -1,5 +1,5 @@
+package model.market;
 import model.user.*;
-import model.market.*;
 
 /**
  * Main hierarchy class representing the online market system.
