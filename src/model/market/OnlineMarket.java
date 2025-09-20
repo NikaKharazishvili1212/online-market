@@ -1,5 +1,7 @@
 package model.market;
+
 import model.user.*;
+import java.util.*;
 
 /**
  * Main hierarchy class representing the online market system.
@@ -10,9 +12,10 @@ public class OnlineMarket {
     public static final String MARKET_NAME = "JavaMarket";
     private static int totalUsers;
     
-    private Admin[] admins;
-    private Customer[] customers;
-    private Category[] categories;
+    private List<Admin> admins;
+    private List<Customer> customers;
+    private List<Category> categories;
+    private Map<String, Product> productCatalog;
 
     static {
         totalUsers = 0;
@@ -20,9 +23,10 @@ public class OnlineMarket {
     }
 
     public OnlineMarket() {
-        this.admins = new Admin[0];
-        this.customers = new Customer[0];
-        this.categories = new Category[0];
+        this.admins = new ArrayList<>();
+        this.customers = new ArrayList<>();
+        this.categories = new ArrayList<>();
+        this.productCatalog = new HashMap<>();
     }
 
     // Getters and setters
@@ -34,27 +38,35 @@ public class OnlineMarket {
         totalUsers++;
     }
 
-    public Admin[] getAdmins() {
+    public List<Admin> getAdmins() {
         return admins;
     }
 
-    public void setAdmins(Admin[] admins) {
+    public void setAdmins(List<Admin> admins) {
         this.admins = admins;
     }
 
-    public Customer[] getCustomers() {
+    public List<Customer> getCustomers() {
         return customers;
     }
 
-    public void setCustomers(Customer[] customers) {
+    public void setCustomers(List<Customer> customers) {
         this.customers = customers;
     }
 
-    public Category[] getCategories() {
+    public List<Category> getCategories() {
         return categories;
     }
 
-    public void setCategories(Category[] categories) {
+    public void setCategories(List<Category> categories) {
         this.categories = categories;
+    }
+
+    public Map<String, Product> getProductCatalog() {
+        return productCatalog;
+    }
+
+    public void setProductCatalog(Map<String, Product> productCatalog) {
+        this.productCatalog = productCatalog;
     }
 }

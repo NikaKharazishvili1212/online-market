@@ -1,17 +1,18 @@
 package model.market;
 
+import java.util.*;
+
 /**
  * Represents a customer order with products and status.
- * Extends Entity class.
  */
 public class Order {
 
     private String id;
     private String status;
-    private Product[] products;
+    private List<Product> products;
     private Payment payment;
 
-    public Order(String id, String status, Product[] products, Payment payment) {
+    public Order(String id, String status, List<Product> products, Payment payment) {
         this.id = id;
         this.status = status;
         this.products = products;
@@ -35,11 +36,11 @@ public class Order {
         this.status = status;
     }
 
-    public Product[] getProducts() {
+    public List<Product> getProducts() {
         return products;
     }
 
-    public void setProducts(Product[] products) {
+    public void setProducts(List<Product> products) {
         this.products = products;
     }
 

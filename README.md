@@ -27,3 +27,11 @@ A Java class hierarchy implementation for an online marketplace demonstrating OO
 - ✅ Created 5 custom exceptions (1 checked and 4 unchecked)
 - ✅ Handled checked exception
 - ✅ Created one AutoCloseable class `MarketResource` and used try-catch with resources
+
+## Requirements Checklist for Homework 5 (extended)
+- ✅ Replaced all arrays with Collections (List, Set, Map)
+- ✅ Used custom classes in collections (Product in Set, String-Product pairs in Map)
+- ✅ Used collection methods: add, isEmpty, size, get, put, iterator
+- ✅ Iterated through List, Set, and Map collections
+- ✅ Retrieved first elements from List, Set, and Map
+- ✅ Created 2 generic classes: `GenericContainer<T>` and `GenericPair<K, V>`

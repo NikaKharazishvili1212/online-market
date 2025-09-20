@@ -2,7 +2,7 @@ package model.user;
 
 import model.market.*;
 import java.math.BigDecimal;
-import java.util.Date;
+import java.util.*;
 
 /**
  * Represents a customer user who can make purchases.
@@ -10,16 +10,16 @@ import java.util.Date;
  */
 public class Customer extends User {
 
-    private Product[] shoppingCart;
-    private Product[] wishlist;
-    private Order[] orders;
+    private List<Product> shoppingCart;
+    private Set<Product> wishlist;
+    private List<Order> orders;
     private BigDecimal balance;
 
     public Customer(String id, String name, String email, String phone, Date registrationDate, BigDecimal balance) {
         super(id, name, email, phone, registrationDate);
-        this.shoppingCart = new Product[0];
-        this.wishlist = new Product[0];
-        this.orders = new Order[0];
+        this.shoppingCart = new ArrayList<>();
+        this.wishlist = new HashSet<>();
+        this.orders = new ArrayList<>();
         this.balance = balance;
     }
 
@@ -43,27 +43,27 @@ public class Customer extends User {
         this.balance = this.balance.add(amount);
     }
 
-    public Product[] getShoppingCart() {
+    public List<Product> getShoppingCart() {
         return shoppingCart;
     }
 
-    public void setShoppingCart(Product[] shoppingCart) {
+    public void setShoppingCart(List<Product> shoppingCart) {
         this.shoppingCart = shoppingCart;
     }
 
-    public Product[] getWishlist() {
+    public Set<Product> getWishlist() {
         return wishlist;
     }
 
-    public void setWishlist(Product[] wishlist) {
+    public void setWishlist(Set<Product> wishlist) {
         this.wishlist = wishlist;
     }
 
-    public Order[] getOrders() {
+    public List<Order> getOrders() {
         return orders;
     }
 
-    public void setOrders(Order[] orders) {
+    public void setOrders(List<Order> orders) {
         this.orders = orders;
     }
 }

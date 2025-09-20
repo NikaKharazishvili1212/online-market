@@ -1,6 +1,7 @@
 package model.market;
 
 import java.math.BigDecimal;
+import java.util.*;
 
 /**
  * Represents a product available for purchase in the market.
@@ -12,7 +13,7 @@ public class Product extends MarketItem implements Pricable, Stockable, Reviewab
     public static BigDecimal taxRate;
     private final String productCode;
     private int stock;
-    private Review[] reviews;
+    private List<Review> reviews;
 
     static {
         taxRate = new BigDecimal("0.1");
@@ -22,7 +23,7 @@ public class Product extends MarketItem implements Pricable, Stockable, Reviewab
         super(id, name, price);
         this.stock = stock;
         this.productCode = productCode;
-        this.reviews = new Review[0];
+        this.reviews = new ArrayList<>();
     }
 
     @Override
@@ -57,11 +58,11 @@ public class Product extends MarketItem implements Pricable, Stockable, Reviewab
         return productCode;
     }
 
-    public Review[] getReviews() {
+    public List<Review> getReviews() {
         return reviews;
     }
 
-    public void setReviews(Review[] reviews) {
+    public void setReviews(List<Review> reviews) {
         this.reviews = reviews;
     }
 
@@ -72,20 +73,17 @@ public class Product extends MarketItem implements Pricable, Stockable, Reviewab
 
     @Override
     public void addReview(Review review) {
-        Review[] newReviews = new Review[reviews.length + 1];
-        System.arraycopy(reviews, 0, newReviews, 0, reviews.length);
-        newReviews[reviews.length] = review;
-        this.reviews = newReviews;
+        reviews.add(review);
     }
 
     @Override
     public double getAverageRating() {
-        if (reviews.length == 0) return 0.0;
+        if (reviews.isEmpty()) return 0.0;
         double sum = 0;
         for (Review review : reviews) {
             sum += review.getRating();
         }
-        return sum / reviews.length;
+        return sum / reviews.size();
     }
 
     // Pricable interface implementation

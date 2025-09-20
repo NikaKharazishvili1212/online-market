@@ -1,6 +1,7 @@
 package model.market;
 
 import java.math.BigDecimal;
+import java.util.*;
 
 /**
  * Represents a product category for organizing products.
@@ -9,12 +10,12 @@ import java.math.BigDecimal;
 public class Category extends MarketItem {
 
     private String description;
-    private Product[] products;
+    private List<Product> products;
 
     public Category(String id, String name, String description) {
         super(id, name, BigDecimal.ZERO);
         this.description = description;
-        this.products = new Product[0];
+        this.products = new ArrayList<>();
     }
 
     @Override
@@ -38,7 +39,7 @@ public class Category extends MarketItem {
 
     @Override
     public String getItemDescription() {
-        return "Category: " + name + " - " + description + " (" + products.length + " products)";
+        return "Category: " + name + " - " + description + " (" + products.size() + " products)";
     }
 
     // Getters and setters
@@ -50,11 +51,11 @@ public class Category extends MarketItem {
         this.description = description;
     }
 
-    public Product[] getProducts() {
+    public List<Product> getProducts() {
         return products;
     }
 
-    public void setProducts(Product[] products) {
+    public void setProducts(List<Product> products) {
         this.products = products;
     }
 }
