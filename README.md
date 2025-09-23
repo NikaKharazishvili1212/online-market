@@ -35,3 +35,9 @@ A Java class hierarchy implementation for an online marketplace demonstrating OO
 - ✅ Iterated through List, Set, and Map collections
 - ✅ Retrieved first elements from List, Set, and Map
 - ✅ Created 2 generic classes: `GenericContainer<T>` and `GenericPair<K, V>`
+
+## Requirements Checklist for Homework 6 (extended)
+- ✅ Used 5+ lambda functions from java.util.function
+- ✅ Created 3 custom Lambda functions
+- ✅ Created 5 complex Enums with fields, methods, and blocks
+- ✅ Created 1 record
